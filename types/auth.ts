@@ -36,7 +36,23 @@ export interface AuthResponse {
   data: {
     user: User;
     accessToken: string;
+    refreshToken?: string;
   };
+}
+
+export interface AuthTokenResponse {
+  success: boolean;
+  message: string;
+  data: {
+    accessToken: string;
+    refreshToken?: string;
+  };
+}
+
+export interface RegisterResponse {
+  success: boolean;
+  message: string;
+  data: User;
 }
 
 export interface MeResponse {

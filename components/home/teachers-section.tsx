@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, GraduationCap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 import { Container } from "@/components/common/container";
 import { SectionHeading } from "@/components/common/section-heading";
@@ -7,22 +8,25 @@ import { Button } from "@/components/ui/button";
 
 const teachers = [
   {
-    name: "Faculty Member",
-    subject: "Mathematics",
+    name: "Mr. Lakshman Singh Shekhawat",
+    subject: "Mathematics & Programming",
+    image: "/images/lakshman-sir.png",
   },
   {
-    name: "Faculty Member",
-    subject: "Science",
+    name: "Mr. Krishna Prakash Balodiya",
+    subject: "Science & Programming",
+    image: "/images/krishna-sir.png",
   },
   {
-    name: "Faculty Member",
-    subject: "Programming",
+    name: "Miss. Kavya Sharma",
+    subject: "Digital Marketing",
+    image: "/images/kavya-mam.png",
   },
 ];
 
 export function TeachersSection() {
   return (
-    <section className="py-20 lg:py-28">
+    <section id="teachers" className="py-20 lg:py-28">
       <Container>
         <SectionHeading
           badge="Our Teachers"
@@ -34,20 +38,28 @@ export function TeachersSection() {
           {teachers.map((teacher, index) => (
             <div
               key={`${teacher.subject}-${index}`}
-              className="overflow-hidden rounded-2xl border"
+              className="overflow-hidden rounded-2xl border bg-background"
             >
-              <div className="flex `aspect-4/3` items-center justify-center bg-muted">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <GraduationCap className="h-10 w-10" />
-                </div>
+              {/* Teacher Image */}
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
+                <Image
+                  src={teacher.image}
+                  alt={teacher.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
               </div>
 
+              {/* Teacher Content */}
               <div className="p-6">
                 <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                   {teacher.subject}
                 </p>
 
-                <h3 className="mt-2 text-xl font-bold">{teacher.name}</h3>
+                <h3 className="mt-2 text-xl font-bold leading-tight">
+                  {teacher.name}
+                </h3>
 
                 <p className="mt-2 text-sm text-muted-foreground">
                   Faculty at LKS
@@ -67,7 +79,7 @@ export function TeachersSection() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             }
-          ></Button>
+          />
         </div>
       </Container>
     </section>

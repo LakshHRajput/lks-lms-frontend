@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin , FaYoutube  } from "react-icons/fa";
-
+import Image from "next/image";
 import { Container } from "@/components/common/container";
-import { Logo } from "@/components/common/logo";
+
 
 const quickLinks = [
   { label: "About", href: "/about" },
@@ -27,7 +27,15 @@ export function Footer() {
       <Container>
         <div className="grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Logo />
+            <Link href="/" aria-label="Home" className="inline-flex">
+              <Image
+                src="/images/logo.png"
+                alt="Learning Knowledge Solution logo"
+                width={52}
+                height={52}
+                className="h-12 w-12 object-contain"
+              />
+            </Link>
 
             <p className="mt-5 max-w-sm text-sm leading-6 text-muted-foreground">
               LKS - Learning Knowledge Solution is an educational learning

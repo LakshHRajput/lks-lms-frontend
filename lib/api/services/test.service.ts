@@ -44,7 +44,7 @@ export const testService = {
     data: UpdateTestInput
   ): Promise<ApiResponse<Test>> {
     const response =
-      await apiClient.put<ApiResponse<Test>>(
+      await apiClient.patch<ApiResponse<Test>>(
         `/tests/${id}`,
         data
       );

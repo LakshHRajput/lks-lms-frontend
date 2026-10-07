@@ -62,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body>
+      <body cz-shortcut-listen="true">
         <Providers>{children}</Providers>
       </body>
     </html>

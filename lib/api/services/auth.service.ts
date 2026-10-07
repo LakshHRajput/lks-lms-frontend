@@ -2,10 +2,12 @@
 import apiClient from "../api-client";
 
 import type {
+    AuthTokenResponse,
     AuthResponse,
     LoginInput,
     RegisterInput,
     MeResponse,
+    RegisterResponse,
 } from "@/types/auth";
 
 export const authService = {
@@ -22,8 +24,8 @@ export const authService = {
 
     register: async (
         data: RegisterInput
-    ): Promise<AuthResponse> => {
-        const response = await apiClient.post<AuthResponse>(
+    ): Promise<RegisterResponse> => {
+        const response = await apiClient.post<RegisterResponse>(
             "/auth/register",
             data
         );
@@ -39,8 +41,8 @@ export const authService = {
         return response.data;
     },
 
-    refresh: async (): Promise<AuthResponse> => {
-        const response = await apiClient.post<AuthResponse>(
+    refresh: async (): Promise<AuthTokenResponse> => {
+        const response = await apiClient.post<AuthTokenResponse>(
             "/auth/refresh"
         );
 

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export function ContactSection() {
   return (
-    <section className="border-t py-20 lg:py-28">
+    <section id="contact" className="border-t py-20 lg:py-28">
       <Container>
         <SectionHeading
           badge="Get in Touch"
@@ -36,7 +36,7 @@ export function ContactSection() {
             <h3 className="mt-4 font-semibold">Phone</h3>
 
             <p className="mt-2 text-sm text-muted-foreground">
-              +91 XXXXX XXXXX
+              +91 9549521541, +91 8502800869
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export function ContactSection() {
             <h3 className="mt-4 font-semibold">Email</h3>
 
             <p className="mt-2 text-sm text-muted-foreground">
-              info@lks.example
+              info@lksinstitute.edu
             </p>
           </div>
         </div>
@@ -56,7 +56,7 @@ export function ContactSection() {
         <div className="mt-8 text-center">
           <Button
             nativeButton={false}
-            render={<Link href="/contact">Contact LKS</Link>}
+            render={<Link href="/#contact">Contact LKS</Link>}
           ></Button>
         </div>
       </Container>

@@ -38,7 +38,7 @@ export const subjectService = {
     id: number,
     data: Partial<CreateSubjectInput>
   ) => {
-    return apiClient.put<
+    return apiClient.patch<
       ApiResponse<Subject>,
       Partial<CreateSubjectInput>
     >(`/subjects/${id}`, data);

@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { tokenManager } from "./token-manager";
+import { authService } from "@/lib/api/services/auth.service";
 
 import type { LoginInput, RegisterInput, User, UserRole } from "@/types/auth";
 
@@ -26,19 +27,22 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-/**
- * Temporary frontend-only user
- * Backend connect hone ke baad isko remove kar denge.
- */
-const MOCK_USER: User = {
-  id: 1,
-  name: "LKS Admin",
-  email: "admin@lks.com",
-  role: "SUPER_ADMIN",
-  isActive: true,
-};
+let sessionRestore: Promise<User | null> | null = null;
 
-const MOCK_TOKEN = "lks-frontend-test-token";
+const restoreSession = () => {
+  if (!sessionRestore) {
+    sessionRestore = (async () => {
+      const refreshed = await authService.refresh();
+      tokenManager.setToken(refreshed.data.accessToken);
+      const currentUser = await authService.me();
+      return currentUser.data;
+    })().finally(() => {
+      sessionRestore = null;
+    });
+  }
+
+  return sessionRestore;
+};
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -49,90 +53,59 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const isAuthenticated = Boolean(user);
 
-  /**
-   * Restore mock login from localStorage
-   */
   useEffect(() => {
-    const storedUser = localStorage.getItem("lks-user");
+    let isMounted = true;
 
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser) as User;
-
-        tokenManager.setToken(MOCK_TOKEN);
-
-        // React warning avoid karne ke liye
-        // state update ko async callback me kiya gaya hai.
-        queueMicrotask(() => {
-          setUser(parsedUser);
-          setIsLoading(false);
-        });
-
-        return;
-      } catch (error) {
-        console.error("Failed to restore mock user:", error);
-
-        localStorage.removeItem("lks-user");
+    restoreSession()
+      .then((restoredUser) => {
+        if (isMounted) setUser(restoredUser);
+      })
+      .catch(() => {
         tokenManager.clearToken();
-      }
-    }
+        if (isMounted) setUser(null);
+      })
+      .finally(() => {
+        if (isMounted) setIsLoading(false);
+      });
 
-    queueMicrotask(() => {
-      setIsLoading(false);
-    });
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  /**
-   * Frontend-only login
-   *
-   * Test credentials:
-   * Email: admin@lks.com
-   * Password: admin123
-   */
-  const login = async (data: LoginInput): Promise<void> => {
-    const email = data.email.trim().toLowerCase();
-
-    if (email !== "admin@lks.com" || data.password !== "admin123") {
-      throw new Error("Invalid email or password");
-    }
-
-    localStorage.setItem("lks-user", JSON.stringify(MOCK_USER));
-
-    tokenManager.setToken(MOCK_TOKEN);
-
-    setUser(MOCK_USER);
-  };
-
-  /**
-   * Temporary frontend-only registration
-   */
-  const register = async (data: RegisterInput): Promise<void> => {
-    const newUser: User = {
-      id: Date.now(),
-      name: data.name,
-      email: data.email,
-      role: "STUDENT",
-      isActive: true,
+  useEffect(() => {
+    const handleSessionExpired = () => {
+      tokenManager.clearToken();
+      setUser(null);
+      router.replace("/login");
     };
 
-    localStorage.setItem("lks-user", JSON.stringify(newUser));
+    window.addEventListener("lks:session-expired", handleSessionExpired);
+    return () => window.removeEventListener("lks:session-expired", handleSessionExpired);
+  }, [router]);
 
-    tokenManager.setToken(MOCK_TOKEN);
-
-    setUser(newUser);
+  const login = async (data: LoginInput): Promise<void> => {
+    const response = await authService.login({
+      email: data.email.trim().toLowerCase(),
+      password: data.password,
+    });
+    tokenManager.setToken(response.data.accessToken);
+    setUser(response.data.user);
   };
 
-  /**
-   * Logout
-   */
+  const register = async (data: RegisterInput): Promise<void> => {
+    await authService.register({ ...data, role: "STUDENT" });
+    await login({ email: data.email, password: data.password });
+  };
+
   const logout = async (): Promise<void> => {
-    localStorage.removeItem("lks-user");
-
-    tokenManager.clearToken();
-
-    setUser(null);
-
-    router.push("/login");
+    try {
+      await authService.logout();
+    } finally {
+      tokenManager.clearToken();
+      setUser(null);
+      router.replace("/login");
+    }
   };
 
   /**

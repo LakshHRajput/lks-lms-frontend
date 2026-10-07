@@ -36,7 +36,7 @@ export const courseService = {
     id: number,
     data: UpdateCourseInput
   ) => {
-    return apiClient.put<
+    return apiClient.patch<
       ApiResponse<Course>,
       UpdateCourseInput
     >(`/courses/${id}`, data);

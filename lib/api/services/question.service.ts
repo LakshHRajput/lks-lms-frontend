@@ -48,7 +48,7 @@ export const questionService = {
     data: UpdateQuestionInput
   ): Promise<ApiResponse<Question>> {
     const response =
-      await apiClient.put<ApiResponse<Question>>(
+      await apiClient.patch<ApiResponse<Question>>(
         `/questions/${id}`,
         data
       );

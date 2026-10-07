@@ -48,7 +48,7 @@ export const chapterService = {
     id: number,
     data: Partial<CreateChapterInput>
   ) => {
-    return apiClient.put<
+    return apiClient.patch<
       ApiResponse<Chapter>,
       Partial<CreateChapterInput>
     >(`/chapters/${id}`, data);

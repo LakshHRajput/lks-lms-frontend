@@ -25,7 +25,7 @@ export const userService = {
     data: UpdateUserInput
   ): Promise<ApiResponse<ManagedUser>> {
     const response =
-      await apiClient.put<ApiResponse<ManagedUser>>(
+      await apiClient.patch<ApiResponse<ManagedUser>>(
         `/users/${id}`,
         data
       );

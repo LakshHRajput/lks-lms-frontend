@@ -53,7 +53,7 @@ export async function updateFee(
   id: string,
   data: UpdateFeeInput,
 ) {
-  const response = await apiClient.put<{
+  const response = await apiClient.patch<{
     success: boolean;
     message: string;
     data: Fee;

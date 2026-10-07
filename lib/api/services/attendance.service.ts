@@ -82,7 +82,7 @@ export async function updateAttendance(
     id: string,
     data: UpdateAttendanceInput,
 ) {
-    const response = await apiClient.put<{
+    const response = await apiClient.patch<{
         success: boolean;
         message: string;
         data: Attendance;

@@ -48,7 +48,7 @@ export const noteService = {
     id: number,
     data: Partial<CreateNoteInput>
   ) => {
-    return apiClient.put<
+    return apiClient.patch<
       ApiResponse<Note>,
       Partial<CreateNoteInput>
     >(`/notes/${id}`, data);

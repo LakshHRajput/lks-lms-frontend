@@ -48,7 +48,7 @@ export const videoService = {
     id: number,
     data: Partial<CreateVideoInput>
   ) => {
-    return apiClient.put<
+    return apiClient.patch<
       ApiResponse<Video>,
       Partial<CreateVideoInput>
     >(`/videos/${id}`, data);

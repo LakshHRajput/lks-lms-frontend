@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 export function TestSeries() {
   return (
-    <section className="py-20 lg:py-28">
+    <section id="test-series" className="py-20 lg:py-28">
       <Container>
         <SectionHeading
           badge="Test Series"
