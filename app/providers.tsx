@@ -6,6 +6,9 @@ import { queryClient } from "@/lib/query/query-client";
 
 import { AuthProvider } from "@/lib/auth/auth-context";
 
+import { ThemeProvider } from "next-themes";
+
+
 interface ProvidersProps {
   children: React.ReactNode;
 }
@@ -16,7 +19,9 @@ export default function Providers({
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

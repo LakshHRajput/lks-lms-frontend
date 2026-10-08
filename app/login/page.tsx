@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
+import Image from "next/image";
 import { ArrowRight, BookOpen, Eye, EyeOff, GraduationCap } from "lucide-react";
 
 import { useAuth } from "@/lib/hooks/use-auth";
@@ -46,10 +47,16 @@ export default function LoginPage() {
 
   return (
     <main className="grid min-h-screen bg-background lg:grid-cols-[minmax(320px,0.9fr)_1.1fr]">
-      <aside className="relative hidden overflow-hidden bg-[#123d31] p-12 text-white lg:flex lg:flex-col lg:justify-between">
-        <div className="absolute inset-0 opacity-15" aria-hidden="true" style={{ backgroundImage: "radial-gradient(#ffffff 0.65px, transparent 0.65px)", backgroundSize: "18px 18px" }} />
+      <aside className="relative hidden overflow-hidden bg-[#3098e2] p-12 text-white lg:flex lg:flex-col lg:justify-between">
+        <div className="absolute inset-0 opacity-15" aria-hidden="true" />
         <Link href="/" className="relative flex items-center gap-3 text-sm font-semibold">
-          <span className="flex size-10 items-center justify-center rounded-md bg-white text-[#123d31]">LKS</span>
+          <Image
+            src="/images/logo.png"
+            alt="Learning Knowledge Solution logo"
+            width={50}
+            height={50}
+            className="h-14 w-14 object-contain"
+          />
           Learning Knowledge Solution
         </Link>
         <div className="relative max-w-md pb-8">
@@ -67,7 +74,13 @@ export default function LoginPage() {
       <section className="flex min-h-screen items-center justify-center px-5 py-12 sm:px-8">
         <div className="w-full max-w-md">
           <Link href="/" className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-primary lg:hidden">
-            <span className="flex size-9 items-center justify-center rounded-md bg-primary text-xs text-primary-foreground">LKS</span>
+            <Image
+              src="/images/logo.png"
+              alt="Learning Knowledge Solution logo"
+              width={40}
+              height={40}
+              className="h-10 w-10 object-contain"
+            />
             Learning Knowledge Solution
           </Link>
           <p className="text-xs font-semibold uppercase text-primary">Welcome back</p>

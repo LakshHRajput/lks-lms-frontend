@@ -3,47 +3,107 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+
   --color-destructive: var(--destructive);
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
   --font-sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
 }
 
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
 :root {
   color-scheme: light;
+
   --background: #f4f8fc;
   --foreground: #0b1b35;
+
   --card: #ffffff;
   --card-foreground: #0b1b35;
+
   --primary: #087bd7;
   --primary-foreground: #ffffff;
+
   --secondary: #e4f3ff;
   --secondary-foreground: #075b9e;
+
   --muted: #edf3f8;
   --muted-foreground: #5c6d81;
+
   --accent: #35baff;
   --accent-foreground: #ffffff;
+
   --destructive: #bd3c43;
+
   --border: #d7e3ed;
   --input: #d7e3ed;
+
   --ring: #35aef0;
+
   --radius: 0.625rem;
 }
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+.dark {
+  color-scheme: dark;
+
+  --background: #020817;
+  --foreground: #f8fafc;
+
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+
+  --primary: #35aef0;
+  --primary-foreground: #ffffff;
+
+  --secondary: #132a43;
+  --secondary-foreground: #7dc8ff;
+
+  --muted: #111c2e;
+  --muted-foreground: #94a3b8;
+
+  --accent: #35baff;
+  --accent-foreground: #ffffff;
+
+  --destructive: #ef626a;
+
+  --border: #243449;
+  --input: #243449;
+
+  --ring: #35aef0;
+}
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 
 html {
   scroll-behavior: smooth;
@@ -52,14 +112,28 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
+
   background: var(--background);
   color: var(--foreground);
+
   font-family: var(--font-sans);
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
 
 ::selection {
   background: color-mix(in srgb, var(--primary) 22%, transparent);
 }
+
+/* =========================================================
+   TOUCH / TAP
+   ========================================================= */
 
 button,
 a,
@@ -69,14 +143,32 @@ select {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
 @media print {
   body {
     background: white !important;
+    color: black !important;
   }
 
   .no-print {

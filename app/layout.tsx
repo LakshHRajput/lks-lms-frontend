@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Providers from "./providers";
 import "./globals.css";
+import { FloatingActions } from "@/components/common/floating-actions";
 
 export const metadata: Metadata = {
   title: {
@@ -64,6 +65,7 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <body cz-shortcut-listen="true">
         <Providers>{children}</Providers>
+        <FloatingActions />
       </body>
     </html>
   );

@@ -10,6 +10,7 @@ import { TeachersSection } from "@/components/home/teachers-section";
 import { Testimonials } from "@/components/home/testimonials";
 import { AdmissionCta } from "@/components/home/admission-cta";
 import { ContactSection } from "@/components/home/contact-section";
+import { Footer } from "@/components/layout/footer";
 
 export default function HomePage() {
   return (
@@ -37,6 +38,7 @@ export default function HomePage() {
       <AdmissionCta />
 
       <ContactSection />
+      <Footer />
     </>
   );
 }
