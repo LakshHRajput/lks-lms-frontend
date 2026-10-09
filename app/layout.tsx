@@ -62,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body cz-shortcut-listen="true">
         <Providers>{children}</Providers>
         <FloatingActions />
