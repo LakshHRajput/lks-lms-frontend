@@ -46,7 +46,7 @@ apiClient.interceptors.response.use(
 
     if (!refreshRequest) {
       refreshRequest = axios
-        .post<AuthTokenResponse>(`${API_BASE_URL}/auth/refresh`, {}, { withCredentials: true })
+        .post<AuthTokenResponse>(`${API_BASE_URL}/api/v1/auth/refresh`, {}, { withCredentials: true })
         .then((response) => {
           const token = response.data.data.accessToken;
           tokenManager.setToken(token);

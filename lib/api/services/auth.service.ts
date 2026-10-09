@@ -1,4 +1,3 @@
-
 import apiClient from "../api-client";
 
 import type {
@@ -11,22 +10,18 @@ import type {
 } from "@/types/auth";
 
 export const authService = {
-    login: async (
-        data: LoginInput
-    ): Promise<AuthResponse> => {
+    login: async (data: LoginInput): Promise<AuthResponse> => {
         const response = await apiClient.post<AuthResponse>(
-            "/auth/login",
+            "/api/v1/auth/login",
             data
         );
 
         return response.data;
     },
 
-    register: async (
-        data: RegisterInput
-    ): Promise<RegisterResponse> => {
+    register: async (data: RegisterInput): Promise<RegisterResponse> => {
         const response = await apiClient.post<RegisterResponse>(
-            "/auth/register",
+            "/api/v1/auth/register",
             data
         );
 
@@ -35,7 +30,7 @@ export const authService = {
 
     me: async (): Promise<MeResponse> => {
         const response = await apiClient.get<MeResponse>(
-            "/auth/me"
+            "/api/v1/auth/me"
         );
 
         return response.data;
@@ -43,7 +38,8 @@ export const authService = {
 
     refresh: async (): Promise<AuthTokenResponse> => {
         const response = await apiClient.post<AuthTokenResponse>(
-            "/auth/refresh"
+            "/api/v1/auth/refresh",
+            {}
         );
 
         return response.data;
@@ -53,9 +49,8 @@ export const authService = {
         const response = await apiClient.post<{
             success: boolean;
             message: string;
-        }>("/auth/logout");
+        }>("/api/v1/auth/logout");
 
         return response.data;
     },
 };
-
