@@ -5,17 +5,17 @@ import { SectionHeading } from "@/components/common/section-heading";
 
 const testimonials = [
   {
-    name: "Student",
+    name: "Tanu Chauhan (Student)",
     className: "Class 10",
     text: "The structured lessons and regular tests make it easier to keep track of my preparation.",
   },
   {
-    name: "Student",
+    name: "Lakshya Foujdar (Student)",
     className: "Class 12 PCM",
     text: "Having learning material and progress information in one place makes studying more organized.",
   },
   {
-    name: "Parent",
+    name: "Pawan Veer Singh (Parent)",
     className: "Parent",
     text: "The platform gives a clear view of learning activities and academic progress.",
   },

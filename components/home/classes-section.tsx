@@ -39,7 +39,7 @@ const classes = [
     description:
       "Build practical digital and programming skills.",
     subjects:
-      "Programming • Web Development • JavaScript • Python",
+      "Programming • Web Development • JavaScript • Python • Rscit • Tally • Digital Marketing",
     icon: Laptop,
     href: "/courses",
   },

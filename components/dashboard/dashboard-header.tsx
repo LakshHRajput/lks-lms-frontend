@@ -25,15 +25,6 @@ export function DashboardHeader({
           <Menu size={20} />
         </button>
 
-        <div>
-          <h1 className="text-lg font-semibold">
-            LKS LMS
-          </h1>
-
-          <p className="hidden text-xs text-muted-foreground sm:block">
-            Learning Management System
-          </p>
-        </div>
       </div>
 
       {/* Right */}

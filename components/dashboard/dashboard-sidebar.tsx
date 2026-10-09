@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   BookOpen,
@@ -95,16 +96,17 @@ export function DashboardSidebar({
             className="flex items-center gap-2"
             onClick={onClose}
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
-              LKS
-            </div>
-
-            <div>
-              <p className="font-semibold">LKS</p>
-              <p className="text-xs text-muted-foreground">
-                Learning Knowledge Solution
-              </p>
-            </div>
+             <Image
+              src="/images/logo.png"
+              alt="Learning Knowledge Solution logo"
+              width={50}
+              height={50}
+              className="h-14 w-14 object-contain"
+            />
+            
+          <p className="hidden text-xs text-muted-foreground sm:block">
+            Learning Management System
+          </p>
           </Link>
 
           <button

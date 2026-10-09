@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
 import { ArrowRight, BookOpen, GraduationCap } from "lucide-react";
-
+import Image from "next/image";
 import { useAuth } from "@/lib/hooks/use-auth";
 
 export default function RegisterPage() {
@@ -55,9 +55,15 @@ export default function RegisterPage() {
 
   return (
     <main className="grid min-h-screen bg-background lg:grid-cols-[minmax(320px,0.9fr)_1.1fr]">
-      <aside className="relative hidden overflow-hidden bg-[#123d31] p-12 text-white lg:flex lg:flex-col lg:justify-between">
-        <Link href="/" className="flex items-center gap-3 text-sm font-semibold">
-          <span className="flex size-10 items-center justify-center rounded-md bg-white text-[#123d31]">LKS</span>
+      <aside className="relative hidden overflow-hidden bg-[#3098e2] p-12 text-white lg:flex lg:flex-col lg:justify-between">
+        <Link href="/" className="relative flex items-center gap-3 text-sm font-semibold">
+          <Image
+            src="/images/logo.png"
+            alt="Learning Knowledge Solution logo"
+            width={50}
+            height={50}
+            className="h-14 w-14 object-contain"
+          />
           Learning Knowledge Solution
         </Link>
         <div className="max-w-md pb-8">
