@@ -12,6 +12,7 @@ children: React.ReactNode;
 export default function Providers({ children }: ProvidersProps) {
 return ( <QueryClientProvider client={queryClient}> <AuthProvider> <ThemeProvider
        attribute="class"
+       forcedTheme="light"
        defaultTheme="light"
        enableSystem={false}
        disableTransitionOnChange
